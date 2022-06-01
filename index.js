@@ -17,7 +17,8 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
-//middleware
+
+//Middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
