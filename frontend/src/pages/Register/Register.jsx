@@ -19,8 +19,8 @@ export default function Register() {
                     <input placeholder="Password" className="register-input" />
                     <input placeholder="re-enter Password" className="register-input" />
                     <button className="register-btn">Create</button>
-                    <span className="option-symbol">Or</span>
-                    <Link to="/frontend/src/pages/Login/Login.jsx" className="btn btn-primary">Login</Link>
+                    <span className="option-symbol">OR</span>
+                    <button className="create-button">Login</button>
                  </div>
             </div>
         </div>
