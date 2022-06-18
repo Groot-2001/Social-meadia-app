@@ -3,7 +3,7 @@ import Online from "../online/Online";
 import {user} from "../../dummyData";
 
 export default function Righbar({profile}) {
-
+  const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar =()=>{
     return (
       <>
@@ -27,6 +27,7 @@ export default function Righbar({profile}) {
   };
 
   const ProfileRightbar = () =>{
+    
     return(
       <>
       <h4 className="rightbar-side-title">User-Status</h4>
@@ -47,27 +48,27 @@ export default function Righbar({profile}) {
       <h4 className="rightbar-side-title">Friends</h4>
       <div className="friends-followings">
         <div className="friends">
-          <img src="/assets/person/icon.png" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/icon.png`} alt="" className="friends-pic" />
           <span className="friend-name">You</span>
         </div>
         <div className="friends">
-          <img src="/assets/person/2.jpeg" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/2.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
         <div className="friends">
-          <img src="/assets/person/3.jpeg" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/3.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
         <div className="friends">
-          <img src="/assets/person/4.jpeg" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/4.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
         <div className="friends">
-          <img src="/assets/person/5.jpeg" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/5.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
         <div className="friends">
-          <img src="/assets/person/5.jpeg" alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/5.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
       </div>
@@ -77,7 +78,7 @@ export default function Righbar({profile}) {
   return (
     <div className="rightbar">
       <div className="rightbar-wrapper">
-        <HomeRightbar/>
+        <ProfileRightbar/>
       </div>
     </div>
   )
