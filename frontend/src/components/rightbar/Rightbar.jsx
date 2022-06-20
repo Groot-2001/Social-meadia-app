@@ -1,6 +1,6 @@
 import "./rightbar.css"
 import Online from "../online/Online";
-import {user} from "../../dummyData";
+
 
 export default function Righbar({user}) {
   const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -42,7 +42,7 @@ export default function Righbar({user}) {
         </div>
         <div className="rightbar-info-item">
           <span className="rightbar-info-key">status:</span>
-          <span className="rightbar-info-value">{user.relationship}</span>
+          <span className="rightbar-info-value">{user.relationship ===1?"single":user.relationship === 2?"married":"FindOne"}</span>
         </div>
       </div>
       <h4 className="rightbar-side-title">Friends</h4>
@@ -78,7 +78,7 @@ export default function Righbar({user}) {
   return (
     <div className="rightbar">
       <div className="rightbar-wrapper">
-        <ProfileRightbar/>
+        {user?<ProfileRightbar/>:<HomeRightbar/>}
       </div>
     </div>
   )
