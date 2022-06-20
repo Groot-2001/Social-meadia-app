@@ -4,6 +4,7 @@ import "./post.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {format} from "timeago.js"
+import {Link} from "react-router-dom";
 
 export default function Post({post}) {
   const [like,setlike] = useState(post.likes.length);
@@ -29,7 +30,9 @@ export default function Post({post}) {
       <div className="post-wrapper">
         <div className="post-top">
           <div className="post-top-left">
-            <img src={user.profilePicture || Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
+            <Link to={`profile/${user.username}`}>
+              <img src={user.profilePicture || Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
+            </Link>
             <span className="post-top-left-username">{user.username}</span>
             <span className="post-date">{format(post.createdAt)}</span>
           </div>
