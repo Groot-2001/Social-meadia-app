@@ -32,7 +32,8 @@
     font-size: 24px;
 }
 .profile-info-desc{
-    font-weight: 300;
+    color: #463e3e;
+    font-weight: 400;
 }
 .profile-right{
     flex: 9;

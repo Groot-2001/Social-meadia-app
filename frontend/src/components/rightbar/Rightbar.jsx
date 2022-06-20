@@ -2,7 +2,7 @@ import "./rightbar.css"
 import Online from "../online/Online";
 import {user} from "../../dummyData";
 
-export default function Righbar({profile}) {
+export default function Righbar({user}) {
   const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar =()=>{
     return (
@@ -34,15 +34,15 @@ export default function Righbar({profile}) {
       <div className="rightbar-info">
         <div className="rightbar-info-item">
           <span className="rightbar-info-key">City:</span>
-          <span className="rightbar-info-value">Mumbai</span>
+          <span className="rightbar-info-value">{user.city}</span>
         </div>
         <div className="rightbar-info-item">
           <span className="rightbar-info-key">From:</span>
-          <span className="rightbar-info-value">Maharastra</span>
+          <span className="rightbar-info-value">{user.from}</span>
         </div>
         <div className="rightbar-info-item">
           <span className="rightbar-info-key">status:</span>
-          <span className="rightbar-info-value">single</span>
+          <span className="rightbar-info-value">{user.relationship}</span>
         </div>
       </div>
       <h4 className="rightbar-side-title">Friends</h4>
