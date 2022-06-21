@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import {RssFeed,Chat,PlayCircleFilledOutlined,WorkOutline,HelpOutline,Group,Bookmark,School,Event} from "@material-ui/icons"
-import { user } from "../../dummyData";
+import { User } from "../../dummyData";
 import ClosedFriends from "../ClosedFriends/ClosedFriends";
 
 
@@ -49,7 +49,7 @@ export default function Sidebar() {
        <button className="sidebar-button">Show more</button>
        <hr className="sidebar-horizontal"/>
        <ul className="sidebar-friends">
-        {user.map(u =>(
+        {User.map(u =>(
           <ClosedFriends key={u.id} user={u}/>
         ))}
        </ul>

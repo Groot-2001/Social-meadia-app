@@ -1,4 +1,5 @@
 import "./rightbar.css"
+import {User} from "../../dummyData";
 import Online from "../online/Online";
 
 
@@ -17,7 +18,7 @@ export default function Righbar({user}) {
       
       <h4 className="rightbar-title">Online Friends</h4>
       <ul className="rightbar-friends-list">
-        {user.map(u=>(
+        {User.map((u)=>(
           <Online key={u.id} user={u}/>
         ))}
         
