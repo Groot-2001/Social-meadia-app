@@ -1,4 +1,5 @@
 import {createContext, useReducer} from "react";
+import AuthReducer from "./AuthReducer";
 
 // initial state where default value is set
 const INITIAL_STATE = {
@@ -13,7 +14,7 @@ export const AuthContext = createContext(INITIAL_STATE);
 //wrapper where components are gonna use with context api
 
 export const AuthContextProvider = ({children})=> {
-    const [state,dispatch] = useReducer(AuthContext,INITIAL_STATE);
+    const [state,dispatch] = useReducer(AuthReducer,INITIAL_STATE);
 
     //returning the state with respect to children
     return (
@@ -22,7 +23,7 @@ export const AuthContextProvider = ({children})=> {
                 user:state.user,
                 isFetching:state.isFetching,
                 error:state.error,
-                dispatch
+                dispatch,
                 }}>
             {children}    
         </AuthContext.Provider>
