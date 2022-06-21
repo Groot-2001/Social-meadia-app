@@ -1,6 +1,13 @@
+import { useRef } from "react";
 import "./login.css";
 
 export default function Login() {
+    const email = useRef();
+    const password = useRef();
+    const handlfunc = (e) =>{
+        e.preventDefault();
+        console.log(email);
+    }
   return (
     <div className="login">
         <div className="login-wrapper">
@@ -10,15 +17,30 @@ export default function Login() {
                     Connect with friends and the world around you on FunChat.
                 </span>
             </div>
-            <div className="login-right">
+            <form className="login-right" onSubmit={handlfunc}>
                 <div className="login-box">
-                    <input placeholder="Email" className="login-input" />
-                    <input placeholder="Password" className="login-input" />
+                    <input 
+                        placeholder="Email" 
+                        type={"email"}
+                        required 
+                        className="login-input"
+                        ref={email}
+                    />
+
+                    <input 
+                        placeholder="Password" 
+                        type={"password"}
+                        required 
+                        minLength={6}
+                        className="login-input"
+                        ref={password}
+                    />
+
                     <button className="login-btn">Login</button>
                     <span className="password-forgot">forgot password ?</span>
                     <button className="create-button">Create An Account</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
   )
