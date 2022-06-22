@@ -12,7 +12,7 @@ export default function Login() {
 
     const handlfunc = (e) =>{
         e.preventDefault();
-        LoginCalls({email: email.current.value, password: password.current.value},dispatch);
+        LoginCalls({email:email.current.value, password:password.current.value},dispatch);
     };
    console.log(user);
 

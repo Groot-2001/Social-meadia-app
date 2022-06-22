@@ -13,9 +13,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16"
   },
-  "devDependencies": {},
   "scripts": {
-    "start":"nodemon index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
