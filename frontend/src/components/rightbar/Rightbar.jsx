@@ -9,12 +9,12 @@ export default function Righbar({user}) {
     return (
       <>
      <div className="birthday-container">
-          <img src="/assets/gift.png" alt="" className="birthday-img" />
+          <img src="assets/gift.png" alt="" className="birthday-img" />
           <span className="birthday-text">
             <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today!
           </span>
         </div>
-        <img src="/assets/ad.avif" alt="" className="rightbar-ad" />
+        <img src="assets/ad.png" alt="" className="rightbar-ad" />
       
       <h4 className="rightbar-title">Online Friends</h4>
       <ul className="rightbar-friends-list">
@@ -69,7 +69,7 @@ export default function Righbar({user}) {
           <span className="friend-name">Jhon carter</span>
         </div>
         <div className="friends">
-          <img src={`${Pubfol}person/5.jpeg`} alt="" className="friends-pic" />
+          <img src={`${Pubfol}person/1.jpeg`} alt="" className="friends-pic" />
           <span className="friend-name">Jhon carter</span>
         </div>
       </div>

@@ -8,13 +8,16 @@ export default function Login() {
     const email = useRef();
     const password = useRef();
 
-    const {user,isFetching,dispatch} = useContext(AuthContext);
+    const {isFetching,dispatch} = useContext(AuthContext);
 
     const handlfunc = (e) =>{
         e.preventDefault();
-        LoginCalls({email:email.current.value, password:password.current.value},dispatch);
+        LoginCalls(
+            {email:email.current.value, password:password.current.value},
+            dispatch
+        );
     };
-   console.log(user);
+
 
   return (
     <div className="login">
@@ -29,7 +32,7 @@ export default function Login() {
                 <form className="login-box"  onSubmit={handlfunc}>
                     <input placeholder="Email" type="email" required className="login-input" ref={email}/>
                     <input placeholder="Password" type="password" required  minLength={6} className="login-input" ref={password}/>
-                    <button className="login-btn" disabled={isFetching}>{isFetching?<CircularProgress color="inherit" size="30px"/>:"Login"}</button>
+                    <button className="login-btn" type="submit" disabled={isFetching}>{isFetching?<CircularProgress color="inherit" size="30px"/>:"Login"}</button>
                     <span className="password-forgot">forgot password ?</span>
                     <button className="create-button">Create An Account</button>
                 </form>

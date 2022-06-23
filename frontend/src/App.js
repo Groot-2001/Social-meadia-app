@@ -19,10 +19,10 @@ function App() {
               {user ?<Home/>:<Register/>}
           </Route>
           <Route path="/login">
-              {user ?<Redirect to={"/"}/>:<Login/>}
+              {user ?<Redirect to="/"/>:<Login/>}
           </Route>
           <Route path="/register">
-              {user ?<Redirect to={"/"}/>:<Register/>}
+              {user ?<Redirect to="/"/>:<Register/>}
           </Route>
           <Route path="/profile/:username">
               <Profile/>

@@ -3,10 +3,18 @@ import AuthReducer from "./AuthReducer";
 
 // initial state where default value is set
 const INITIAL_STATE = {
-    user:null,
+    user: {  
+        _id:"629db603bac17b1c564c7cd0",
+        username:"naruto",
+        email:"Uzumaki548@gmail.com",
+        profilePicture:"",
+        coverPicture:"",
+        followers:[],
+        followings:[],
+    },
     isFetching:false,
     error:false
-}
+};
 
 //creating the context-api
 export const AuthContext = createContext(INITIAL_STATE);

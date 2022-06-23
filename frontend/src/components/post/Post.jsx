@@ -2,16 +2,20 @@ import { MoreVert } from "@material-ui/icons";
 import "./post.css";
 // import {user} from "../../dummyData";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import {format} from "timeago.js"
+import { useEffect, useState,useContext } from "react";
+import {format} from "timeago.js";
 import {Link} from "react-router-dom";
+import AuthReducer from "../../context/AuthReducer";
 
 export default function Post({post}) {
   const [like,setlike] = useState(post.likes.length);
   const [islike,setislike] = useState(false);
-  const [user,setUser] = useState({});
+  const [userone,setUser] = useState({});
+
+  const {user:currentUser} = useContext(AuthReducer);
 
   const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
+
 
   useEffect(()=>{
       const fetchUser = async () =>{
@@ -20,7 +24,12 @@ export default function Post({post}) {
     }
     fetchUser();
   },[post.userId]);
-  const likehandler = () =>{
+
+  const likehandler = async () =>{
+    try {
+      await axios.put("/posts/"+post._id+"/like",{userId: currentUser._id});
+      
+    } catch (error) {console.log(error);}
     setlike(islike? like+1 : like-1);
     setislike(!islike);
   }
@@ -30,10 +39,10 @@ export default function Post({post}) {
       <div className="post-wrapper">
         <div className="post-top">
           <div className="post-top-left">
-            <Link to={`/profile/${user.username}`}>
-              <img src={user.profilePicture || Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
+            <Link to={`/profile/${userone.username}`}>
+              <img src={userone.profilePicture?Pubfol+userone.profilePicture: Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
             </Link>
-            <span className="post-top-left-username">{user.username}</span>
+            <span className="post-top-left-username">{userone.username}</span>
             <span className="post-date">{format(post.createdAt)}</span>
           </div>
           <div className="post-top-right">
