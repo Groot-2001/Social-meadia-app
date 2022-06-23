@@ -2,20 +2,20 @@ import { MoreVert } from "@material-ui/icons";
 import "./post.css";
 // import {user} from "../../dummyData";
 import axios from "axios";
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState } from "react";
 import {format} from "timeago.js";
 import {Link} from "react-router-dom";
-import AuthReducer from "../../context/AuthReducer";
+import { useContext } from "react";
+import {AuthContext} from "../../context/AuthContext";
 
 export default function Post({post}) {
   const [like,setlike] = useState(post.likes.length);
   const [islike,setislike] = useState(false);
-  const [userone,setUser] = useState({});
-
-  const {user:currentUser} = useContext(AuthReducer);
+  const [user,setUser] = useState({});
+  const {user:currentUs} = useContext(AuthContext);
 
   const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
-
+  
 
   useEffect(()=>{
       const fetchUser = async () =>{
@@ -25,24 +25,27 @@ export default function Post({post}) {
     fetchUser();
   },[post.userId]);
 
-  const likehandler = async () =>{
+  const likehandler = () =>{
     try {
-      await axios.put("/posts/"+post._id+"/like",{userId: currentUser._id});
+       axios.put("/posts/"+post._id+"/like",{userId:currentUs._id});
       
     } catch (error) {console.log(error);}
-    setlike(islike? like+1 : like-1);
+    setlike(islike? like-1 : like+1);
     setislike(!islike);
   }
+  useEffect(()=>{
+    setislike(post.likes.includes(currentUs._id));
+  },[currentUs._id,post.likes]);
 
   return (
     <div className="post">
       <div className="post-wrapper">
         <div className="post-top">
           <div className="post-top-left">
-            <Link to={`/profile/${userone.username}`}>
-              <img src={userone.profilePicture?Pubfol+userone.profilePicture: Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
+            <Link to={`/profile/${user.username}`}>
+              <img src={user.profilePicture?Pubfol+user.profilePicture: Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
             </Link>
-            <span className="post-top-left-username">{userone.username}</span>
+            <span className="post-top-left-username">{user.username}</span>
             <span className="post-date">{format(post.createdAt)}</span>
           </div>
           <div className="post-top-right">
