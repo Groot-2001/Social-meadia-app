@@ -58,3 +58,6 @@
     color: white;
     cursor: pointer;
 }
+#file{
+    display: none;
+}

@@ -1,11 +1,29 @@
 import "./share.css"
 import {PermMedia,Label,Room,EmojiEmotions} from "@material-ui/icons";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {AuthContext} from "../../context/AuthContext";
+import { useRef } from "react";
+import axios from "axios";
+
+
 export default function Share() {
     const {user} = useContext(AuthContext);
     const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
+    const desc = useRef();
+    const [file,setFile] = useState(null);
 
+    const fileHandler = async (e)=>{
+        e.preventDefault();
+        const newPost = {
+            userId : user._id,
+            desc: desc.current.value
+        }
+        try {
+            await axios.post("/post",newPost);
+        } catch (err) {
+            
+        }
+    }
   return (
     <div className="share">
       <div className="share-wrapper">
@@ -18,16 +36,23 @@ export default function Share() {
                 alt="" className="share-profile-img" />
               <input placeholder=
                 {"What's in your mind "+user.username+"?"}
-                className="share-input" 
+                className="share-input"
+                ref={desc} 
                />
           </div>
           <hr className="share-horizontal" />
-          <div className="share-bottom">
+          <form className="share-bottom" onSubmit={fileHandler}>
               <div className="share-options">
-                  <div className="share-options-list">
+                  <label htmlFor="file" className="share-options-list">
                       <PermMedia htmlColor="tomato" className="share-icon"/>
                       <span className="share-options-list-text">Photo or Video</span>
-                  </div>
+                      <input 
+                        type="file" 
+                        id="file" 
+                        accept=".png,.jpeg,.jpg" 
+                        onChange={(e)=>setFile(e.target.files[0])}
+                      />
+                  </label>
                   <div className="share-options-list">
                       <Label htmlColor="blue" className="share-icon"/>
                       <span className="share-options-list-text">Tag</span>
@@ -41,8 +66,8 @@ export default function Share() {
                       <span className="share-options-list-text">Feelings</span>
                   </div>
               </div>
-              <button className="share-button">Share</button>
-          </div>
+              <button className="share-button" type="submit">Share</button>
+          </form>
       </div>
     </div>
   )
