@@ -32,7 +32,7 @@ export default function Profile() {
                         src={
                           user.coverPicture
                             ? Pubfol+user.coverPicture
-                            : Pubfol+"coverpicCrow.jpg"
+                            : Pubfol+"noCover.jpg"
                         }
                         alt=""
                         className="profile-cover-img" />

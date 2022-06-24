@@ -25,6 +25,10 @@ export default function Post({post}) {
     fetchUser();
   },[post.userId]);
 
+  useEffect(()=>{
+    setislike(post.likes.includes(currentUs._id));
+  },[currentUs._id,post.likes]);
+
   const likehandler = () =>{
     try {
        axios.put("/posts/"+post._id+"/like",{userId:currentUs._id});
@@ -33,9 +37,7 @@ export default function Post({post}) {
     setlike(islike? like-1 : like+1);
     setislike(!islike);
   }
-  useEffect(()=>{
-    setislike(post.likes.includes(currentUs._id));
-  },[currentUs._id,post.likes]);
+
 
   return (
     <div className="post">
@@ -43,7 +45,11 @@ export default function Post({post}) {
         <div className="post-top">
           <div className="post-top-left">
             <Link to={`/profile/${user.username}`}>
-              <img src={user.profilePicture?Pubfol+user.profilePicture: Pubfol+"person/Naruto_Avatar.jpeg"} alt="" className="post-top-img" />
+              <img src={user.profilePicture
+                ?Pubfol+user.profilePicture
+                : Pubfol+"person/Naruto_Avatar.jpeg"
+                } alt="" className="post-top-img" 
+                />
             </Link>
             <span className="post-top-left-username">{user.username}</span>
             <span className="post-date">{format(post.createdAt)}</span>

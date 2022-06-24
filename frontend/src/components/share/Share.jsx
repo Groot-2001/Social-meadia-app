@@ -4,12 +4,22 @@ import { useContext } from "react";
 import {AuthContext} from "../../context/AuthContext";
 export default function Share() {
     const {user} = useContext(AuthContext);
+    const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="share">
       <div className="share-wrapper">
           <div className="share-top">
-              <img src="/assets/person/icon.png" alt="" className="share-profile-img" />
-              <input placeholder="What's in your mind" className="share-input" />
+              <img src={
+                    user.profilePicture
+                    ? Pubfol+user.profilePicture
+                    : Pubfol+"person/Naruto_Avatar.jpeg"
+                } 
+                alt="" className="share-profile-img" />
+              <input placeholder=
+                {"What's in your mind "+user.username+"?"}
+                className="share-input" 
+               />
           </div>
           <hr className="share-horizontal" />
           <div className="share-bottom">

@@ -7,7 +7,7 @@ const INITIAL_STATE = {
         _id:"629db603bac17b1c564c7cd0",
         username:"naruto",
         email:"Uzumaki548@gmail.com",
-        profilePicture:"",
+        profilePicture:"person/1.jpeg",
         coverPicture:"",
         followers:[],
         followings:[],
