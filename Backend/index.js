@@ -9,6 +9,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const multer = require("multer");
+const cors = require("cors");
 const path = require("path");
 
 dotenv.config();
@@ -40,6 +41,7 @@ app.use(express.json());
 app.use(helmet({crossOriginResourcePolicy: false,}));
 app.use(morgan("common"));
 app.use("/images",express.static(path.join(__dirname,"public/images")));
+app.use(cors());
 
 
 
