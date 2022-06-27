@@ -12,30 +12,28 @@ export default function Share() {
     const desc = useRef();
     const [file,setFile] = useState(null);
 
-    const fileHandler = async (e)=>{
+    const submitHandler = async (e) => {
         e.preventDefault();
         const newPost = {
-            userId : user._id,
-            desc: desc.current.value
-        }
-        if(file){
-            const data = new FormData();
-            const fileName = Date.now()+file.name;
-            data.append("file",file);
-            data.append("name",fileName);
-            newPost.img = fileName;
-            try {
-                await axios.post("/upload",data);
-            } catch (err) {
-                console.log(err);
-            }
+          userId: user._id,
+          desc: desc.current.value,
+        };
+        if (file) {
+          const data = new FormData();
+          const fileName = Date.now() + file.name;
+          data.append("name", fileName);
+          data.append("file", file);
+          newPost.img = fileName;
+          console.log(newPost);
+          try {
+            await axios.post("/upload", data);
+          } catch (err) {}
         }
         try {
-            await axios.post("/posts",newPost);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+          await axios.post("/posts", newPost);
+          window.location.reload();
+        } catch (err) {}
+      }
   return (
     <div className="share">
       <div className="share-wrapper">
@@ -53,7 +51,7 @@ export default function Share() {
                />
           </div>
           <hr className="share-horizontal" />
-          <form className="share-bottom" onSubmit={fileHandler}>
+          <form className="share-bottom" onSubmit={submitHandler}>
               <div className="share-options">
                   <label htmlFor="file" className="share-options-list">
                       <PermMedia htmlColor="tomato" className="share-icon"/>
