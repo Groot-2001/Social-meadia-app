@@ -9,7 +9,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const multer = require("multer");
-
+const path = require("path");
 
 dotenv.config();
 
@@ -28,31 +28,32 @@ const storage = multer.diskStorage({
     cb(null,"public/images");
   },
   filename:(req,file,cb)=>{
-    cb(null,file.originalname);
+    cb(null,req.body.name);
   }
 }); 
 
+//setting up with the storage engine
 const upload = multer({storage});
 
-const uploadhandler = (req,res)=>{
-  try {
-    return res.status(200).json("file upload successfully!!");
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-//Middleware
+//Middleware.
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy: false,}));
 app.use(morgan("common"));
+app.use("/images",express.static(path.join(__dirname,"public/images")));
+
 
 
 //RESTful Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
-app.post("/api/upload",upload.single("file"),uploadhandler);
+app.post("/api/upload",upload.single("file"),(req,res)=>{
+  try {
+    return res.status(200).json("file upload successfully!!");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
