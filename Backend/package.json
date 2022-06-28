@@ -16,7 +16,7 @@
     "nodemon": "^2.0.16"
   },
   "scripts": {
-    "start": "nodemon index.js --ignore '../frontend/"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

@@ -52,6 +52,8 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload",upload.single("file"),uploadRoute);
 
+
+//server is active at port 8800
 app.listen(8800, () => {
   console.log("Backend server is running!");
 });

@@ -70,3 +70,18 @@
     display: flex;
     flex-direction: column;
 }
+.follow-btn{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    padding: 8px;
+    max-width: 120px;
+    font-weight: 400;
+    background: dodgerblue;
+    margin-left:.5em;
+    margin-bottom: 1rem;
+    color: yellow;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

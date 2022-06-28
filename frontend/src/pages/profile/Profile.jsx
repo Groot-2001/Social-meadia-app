@@ -17,7 +17,7 @@ export default function Profile() {
     const fetchUser = async () =>{
     const res = await axios.get(`/users?username=${username}`);
     setUser(res.data);
-  }
+  };
   fetchUser();
 },[username]);
   return (
@@ -32,7 +32,7 @@ export default function Profile() {
                         src={
                           user.coverPicture
                             ? Pubfol+user.coverPicture
-                            : Pubfol+"noCover.jpg"
+                            : Pubfol+"naruto-rasengan.gif"
                         }
                         alt=""
                         className="profile-cover-img" />

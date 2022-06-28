@@ -1,10 +1,52 @@
 import "./rightbar.css"
 import {User} from "../../dummyData";
 import Online from "../online/Online";
-
+import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { Add, Remove } from "@material-ui/icons";
 
 export default function Righbar({user}) {
   const Pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [friends, setFriends] = useState([]);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(
+    currentUser.followings.includes(user?.id)
+  );
+
+  useEffect(()=>{
+    const getFriends = async () => {
+      try {
+        const friendList = await axios.get("/users/friends/" + user._id);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [user]);
+
+  const handleClick = async () => {
+    try {
+      if (followed) {
+        await axios.put(`/users/${user._id}/unfollow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: "UNFOLLOW", payload: user._id });
+      } else {
+        await axios.put(`/users/${user._id}/follow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: "FOLLOW", payload: user._id });
+      }
+      setFollowed(!followed);
+
+    } catch (err) {
+    }
+  };
+
   const HomeRightbar =()=>{
     return (
       <>
@@ -28,9 +70,14 @@ export default function Righbar({user}) {
   };
 
   const ProfileRightbar = () =>{
-    
     return(
       <>
+     {user.username !== currentUser.username && (
+          <button className="follow-btn" onClick={handleClick}>
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? <Remove /> : <Add />}
+          </button>
+        )}
       <h4 className="rightbar-side-title">User-Status</h4>
       <div className="rightbar-info">
         <div className="rightbar-info-item">
@@ -48,30 +95,20 @@ export default function Righbar({user}) {
       </div>
       <h4 className="rightbar-side-title">Friends</h4>
       <div className="friends-followings">
-        <div className="friends">
-          <img src={`${Pubfol}person/icon.png`} alt="" className="friends-pic" />
-          <span className="friend-name">You</span>
-        </div>
-        <div className="friends">
-          <img src={`${Pubfol}person/2.jpeg`} alt="" className="friends-pic" />
-          <span className="friend-name">Jhon carter</span>
-        </div>
-        <div className="friends">
-          <img src={`${Pubfol}person/3.jpeg`} alt="" className="friends-pic" />
-          <span className="friend-name">Jhon carter</span>
-        </div>
-        <div className="friends">
-          <img src={`${Pubfol}person/4.jpeg`} alt="" className="friends-pic" />
-          <span className="friend-name">Jhon carter</span>
-        </div>
-        <div className="friends">
-          <img src={`${Pubfol}person/5.jpeg`} alt="" className="friends-pic" />
-          <span className="friend-name">Jhon carter</span>
-        </div>
-        <div className="friends">
-          <img src={`${Pubfol}person/1.jpeg`} alt="" className="friends-pic" />
-          <span className="friend-name">Jhon carter</span>
-        </div>
+        {friends.map((friend)=>(
+          <Link to={"/profile/"+friend.username}style={{textDecoration:"none"}}>
+            <div className="friends">
+             <img src={
+                friend.profilePicture ? 
+                Pubfol+friend.profilePicture 
+                :Pubfol+"person/Naruto_Avatar.jpeg"
+              }
+              alt="" className="friends-pic" />
+             <span className="friend-name">{friend.username}</span>
+           </div>
+          </Link>
+        ))}
+       
       </div>
       </>
     );
