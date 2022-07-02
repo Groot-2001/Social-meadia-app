@@ -9,6 +9,8 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
+const conversationRoute = require("./Routes/conversation");
+const messageRoute = require("./Routes/message");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
@@ -51,6 +53,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload",upload.single("file"),uploadRoute);
+app.use("/api/conversation",conversationRoute);
+app.use("/api/message",messageRoute);
 
 
 //server is active at port 8800

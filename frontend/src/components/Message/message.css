@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.Message{
+    display: flex;
+    flex-direction: column; 
+}
+
+.message-top{
+    display: flex;
+    align-items: center;
+}
+.message-bottom{
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin: 10px;
+}
+.message-img{ 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.message-text{
+    font-family: 'Poppins', sans-serif;
+    background: rgb(226, 226, 226);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    font-size: medium;
+    max-width: 300px;
+}
+.Message.own{
+    align-items: flex-end;
+}
+.Message.own .message-text{
+    background-color: skyblue;
+}

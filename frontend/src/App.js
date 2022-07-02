@@ -1,7 +1,7 @@
 import Login from "./pages/Login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/Register/Register";
-
+import Messenger from "./pages/Messenger";
 import Home from "./pages/Home/Home";
 
 import {
@@ -27,6 +27,7 @@ function App() {
           <Route path="/profile/:username">
               <Profile/>
           </Route>
+          <Route path="/messenger" element={<Messenger/>} />
         </Switch>
     </Router>
     ) ;

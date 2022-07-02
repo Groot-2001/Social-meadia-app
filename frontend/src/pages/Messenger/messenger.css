@@ -1,0 +1,133 @@
+.Messenger{
+    height: calc(100vh - 50px);
+    display: flex;
+}
+.chat-menu{
+    background-color: aliceblue;
+    flex: 3.5;
+}
+
+.chat-menu-input:focus{
+    outline: none;
+}
+
+hr{
+    margin-top: 1rem;
+    background:dodgerblue;
+    width: 10px;
+    height: 3px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: width 450ms ease-out;
+}
+.chat-menu-input:hover ~ hr {
+    width: 95%;
+  }
+  
+.chat-box{
+    flex: 5.5;
+}
+.chat-box-wrapper{
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;
+    justify-content: space-between;
+}
+.chat-box-top{
+    height: 100%;
+    overflow-y: scroll;
+    background:rgb(255, 255, 255);
+    border-radius: 10px;
+    direction: ltr;
+    scrollbar-color: #d4aa70 #e4e4e4;
+    scrollbar-width: thin;
+}
+.chat-box-top::-webkit-scrollbar{
+    width: 5px;
+}
+.chat-box-top::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+  }
+  .chat-box-top::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+    background-color:  #8070d4;
+  }
+
+.chat-box-bottom{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    background: rgb(161, 199, 238);
+    padding: 10px;
+    border-radius: 10px;
+}
+.chat-online{
+    background-color: aliceblue;
+}
+.chat-online-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.online-heading{
+    font-family: sans-serif;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 141, 21);
+    font-weight: bold;
+    background: rgb(238, 221, 185)
+}
+.chat-emoji{
+    color: black;
+    cursor: pointer;
+}
+.chat-bottom-input{
+    width: 80%;
+    resize: none;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+.chat-bottom-input:focus{
+    outline: none;
+}
+.chat-send-button{
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.chat-online{
+    flex: 3;
+}
+.chat-menu-wrapper,.chat-box-wrapper,.chat-online-wrapper{
+    padding: 10px;
+    height: 100%;
+}
+.chat-menu-input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background: rgb(230, 225, 225);
+    color: orangered;
+    font-weight: 400;
+    font-size: 15px;
+    transition: all 200ms ease-out;
+}
+.no-chat{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: rgb(180, 217, 253);
+    font-size: 50px;
+    font-weight:bold;
+    font-family: sans-serif;
+    cursor: default;
+}
