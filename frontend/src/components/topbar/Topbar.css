@@ -66,6 +66,10 @@
     display: flex;
     color: white;
 }
+.chat-icon{
+    list-style-type: none;
+    color: white;
+}
 .topbar-icons-item{
     position: relative;
     cursor: pointer;
