@@ -29,6 +29,7 @@
 }
 .share-horizontal{
     margin: 20px;
+    width: 98%;
 }
 .share-bottom{
     display: flex;

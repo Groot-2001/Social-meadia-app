@@ -1,5 +1,5 @@
 import { useContext,useRef } from "react";
-import { LoginCalls } from "../../apiCalls";
+import { loginCall } from "../../apiCalls";
 import "./login.css";
 import {AuthContext} from "../../context/AuthContext";
 import {CircularProgress} from "@material-ui/core";
@@ -12,7 +12,7 @@ export default function Login() {
 
     const handlfunc = (e) =>{
         e.preventDefault();
-        LoginCalls(
+        loginCall(
             {email:email.current.value, password:password.current.value},
             dispatch
         );

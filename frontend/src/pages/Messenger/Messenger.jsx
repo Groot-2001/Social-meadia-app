@@ -1,11 +1,11 @@
 import "./messenger.css";
 import React, { useContext, useState, useEffect } from "react";
-import Topbar from "../components/Topbar/Topbar";
-import Conversation from "../components/conversations/Conversation";
-import Message from "../components/Message/Message";
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
-import ChatOnline from "../components/chatonline/ChatOnline";
-import { AuthContext } from "../context/AuthContext";
+import Topbar from "../../components/topbar/Topbar";
+import Conversation from "../../components/conversations/Conversation";
+import Message from "../../components/Message/Message";
+import {SentimentSatisfiedAlt} from "@material-ui/icons";
+import ChatOnline from "../../components/chatonline/ChatOnline";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { useRef } from "react";
 
@@ -56,7 +56,7 @@ export default function Messenger() {
   try {
     const res = await axios.post("/message",Newmessage);
     setMessages([...messages,res.data]);
-    setnewMessage("");{/* after the message submit clear the input from text area */}
+    setnewMessage("");/* after the message submit clear the input from text area */
   } catch (error) {
     console.log(error);
   }
@@ -64,8 +64,8 @@ export default function Messenger() {
 
  //whenever a new message send scroll-bar comes to at bottom
  useEffect(()=>{
-  {/*It does not work initially because by the time your component function run there is no elements yet.*/}
-  {/*Hence,we need to check if there is an element present or not then scroll or else just return from there*/}
+  /*It does not work initially because by the time your component function run there is no elements yet.*/
+  /*Hence,we need to check if there is an element present or not then scroll or else just return from there*/
   if (!scrollRef.current) return;
   scrollRef.current.scrollIntoView({ behavior: "smooth" });
  },[messages]);
@@ -80,7 +80,7 @@ export default function Messenger() {
                 <hr />
                 {conversations.map((u)=>(
                   <div className="container" onClick={()=>setCurrentchat(u)}>
-                      <Conversation conversation={u} currentUser={user}/>
+                      <Conversation unique={u} currentUser={user}/>
                   </div>
                     
                 ))}
@@ -103,7 +103,7 @@ export default function Messenger() {
                   
                 </div>
                 <div className="chat-box-bottom">
-                  <SentimentSatisfiedAltIcon className="chat-emoji"/>
+                  <SentimentSatisfiedAlt className="chat-emoji"/>
                   <textarea 
                     placeholder="write something..." 
                     className="chat-bottom-input"

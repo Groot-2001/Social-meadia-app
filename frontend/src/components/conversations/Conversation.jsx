@@ -1,30 +1,31 @@
-import   Axios  from 'axios';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import   axios  from 'axios';
+import { useState,useEffect } from 'react';
 import "./conversation.css";
 
-export default function Conversation({conversation,currentUser}) {
+export default function Conversation({unique,currentUser}) {  
   const [user,setUser] = useState("");
-
   const pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(()=>{
-    const friendId = conversation.member.find((m)=> m !== currentUser._id);
+    const friendId = unique.member.find((m)=> m !== currentUser._id);
 
     const getUser = async () =>{
       try {
-        const res = await Axios.get("/users?userId="+friendId);
+        const res = await axios.get("/users?userId="+friendId);
         setUser(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     getUser();
-  },[currentUser,conversation]);
+  },[currentUser,unique]);
 
   return (
     <div className='conversation'>
-      <img src={user.profilePicture? pubfol+user.profilePicture:pubfol+"noUser2.jpg"}
+      <img src={user.profilePicture
+        ?pubfol+user.profilePicture
+        :pubfol+"/person/Naruto_Avatar.jpeg"
+        }
           alt="" 
           className="conversation-img" />
       <span className="conversation-name">{user.username}</span>
