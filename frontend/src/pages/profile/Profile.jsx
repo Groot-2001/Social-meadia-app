@@ -32,7 +32,7 @@ export default function Profile() {
                         src={
                           user.coverPicture
                             ? Pubfol+user.coverPicture
-                            : Pubfol+"naruto-rasengan.gif"
+                            : Pubfol+"coverpicCrow.jpg"
                         }
                         alt=""
                         className="profile-cover-img" />
